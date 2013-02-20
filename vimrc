@@ -37,6 +37,7 @@ inoremap <C-F> <Right>
 inoremap <C-B> <Left>
 
 "PLUGIN
+execute pathogen#infect()
 syntax on       " 语法高亮
 filetype plugin on  " 文件类型插件
 filetype indent on
