@@ -26,34 +26,41 @@ set whichwrap+=<,>,h,l "退格键和方向键可以换行
 set incsearch       " 增量式搜索
 "set nohlsearch
 set hlsearch        " 高亮搜索
-set ignorecase      " 搜索时忽略大小写
+set smartcase	    "搜索时如果全部小写，则忽略大小写
+"set ignorecase      " 搜索时忽略大小写
 "set magic           " h magic吧
 set showmatch       " 显示匹配的括号
 set nobackup        " 关闭备份
 "set backupdir=.,/tmp
-"set noswapfile      " 不使用swp文件，注意，错误退出后无法恢复
+set noswapfile
 "set lbr             " 在breakat字符处而不是最后一个字符处断行
 "set si              " 智能缩进
 
-"SHORTCUT
-inoremap <C-F> <Right>
-inoremap <C-B> <Left>
 
 "LANGUAGE
-execute pathogen#infect()
+execute pathogen#infect()	
 syntax on       " 语法高亮
-filetype plugin on  " 文件类型插件
-filetype indent on
+filetype plugin indent on  " 文件类型插件
+"filetype indent on
 set completeopt=longest,menu
 autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType python setlocal foldmethod=indent
 set foldlevel=99
 
 
+"SHORTCUT
+inoremap <C-F> <Right>
+inoremap <C-B> <Left>
+nmap j gj
+nmap k gk
+nnoremap ; :
+cmap w!! w !sudo tee % >/dev/null
+
+set pastetoggle=<F11>
 "PLUGIN SETTINGS
 
-"nerdtre
-
+"nerdtree
+:nmap <F7> :NERDTreeToggle<CR>
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
