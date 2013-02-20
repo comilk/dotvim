@@ -6,9 +6,12 @@ colorscheme lucius
 set encoding=utf8
 set fileencodings=utf8,gb2312,gb18030
 set number		" 显示行号
-set columns=88
-set lines=42
 set cursorline
+
+if has("gui_running")
+    set columns=88
+    set lines=42
+endif
 
 "FUNCTION
 set tabstop=8
@@ -19,12 +22,12 @@ set showcmd         " 显示命令
 set lz              " 当运行宏时，在命令执行完成之前，不重绘屏幕
 set hid             " 可以在没有保存的情况下切换buffer
 set backspace=eol,start,indent
-set whichwrap+=<,>,h,l " 退格键和方向键可以换行
+set whichwrap+=<,>,h,l "退格键和方向键可以换行
 set incsearch       " 增量式搜索
 "set nohlsearch
 set hlsearch        " 高亮搜索
 set ignorecase      " 搜索时忽略大小写
-set magic           " h magic吧
+"set magic           " h magic吧
 set showmatch       " 显示匹配的括号
 set nobackup        " 关闭备份
 "set backupdir=.,/tmp
@@ -36,7 +39,7 @@ set nobackup        " 关闭备份
 inoremap <C-F> <Right>
 inoremap <C-B> <Left>
 
-"PLUGIN
+"LANGUAGE
 execute pathogen#infect()
 syntax on       " 语法高亮
 filetype plugin on  " 文件类型插件
@@ -45,3 +48,12 @@ set completeopt=longest,menu
 autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType python setlocal foldmethod=indent
 set foldlevel=99
+
+
+"PLUGIN SETTINGS
+
+"nerdtre
+
+
+"tagbar
+nmap <F8> :TagbarToggle<CR>
