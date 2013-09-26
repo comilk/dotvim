@@ -2,13 +2,14 @@
 set nocompatible    " 关闭兼容模式
 set t_Co=256
 "set background=dark
-colorscheme lucius
+colorscheme lucius_dark
 set encoding=utf8
-set fileencodings=utf8,gb2312,gb18030
+set fileencodings=utf8,gb2312,gb18030,ansi
 set number		" 显示行号
 set cursorline
 
 if has("gui_running")
+    colorscheme smyck
     set columns=88
     set lines=42
 endif
@@ -51,10 +52,11 @@ set foldlevel=99
 "SHORTCUT
 inoremap <C-F> <Right>
 inoremap <C-B> <Left>
+:nmap \l :setlocal number!<CR>
 nmap j gj
 nmap k gk
-nnoremap ; :
-cmap w!! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % 
+
 
 set pastetoggle=<F11>
 "PLUGIN SETTINGS
@@ -63,4 +65,35 @@ set pastetoggle=<F11>
 :nmap <F7> :NERDTreeToggle<CR>
 
 "tagbar
+let g:tagbar_left = 1
 nmap <F8> :TagbarToggle<CR>
+
+
+"Ctrl-P
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+"
+"vim-latex
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+
+
+"neocomplacache
+let g:neocomplcache_enable_at_startup = 1
+" AutoComplPop like behavior.
+let g:neocomplcache_enable_auto_select = 0
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underscore completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Sets minimum char length of syntax keyword.
+let g:neocomplcache_min_syntax_length = 3
+
+
+let b:delimitMate_matchpairs = "(:),[:],{:}"
+nmap <F9> :DelimitMateSwitch<CR>
+
+
