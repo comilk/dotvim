@@ -39,10 +39,31 @@ set noswapfile
 
 
 "LANGUAGE
-execute pathogen#infect()	
 syntax on       " 语法高亮
 filetype plugin indent on  " 文件类型插件
-"filetype indent on
+
+"Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'Shougo/neosnippet.vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'majutsushi/tagbar'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Lokaltog/vim-easymotion'
+" vim-scripts repos
+Bundle 'php.vim'
+
+
 set completeopt=longest,menu
 autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType python setlocal foldmethod=indent
@@ -96,4 +117,23 @@ let g:neocomplcache_min_syntax_length = 3
 let b:delimitMate_matchpairs = "(:),[:],{:}"
 nmap <F9> :DelimitMateSwitch<CR>
 
+let g:EasyMotion_leader_key = '<Leader>'
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
