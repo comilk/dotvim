@@ -51,22 +51,30 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
-Bundle 'Shougo/neosnippet.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/neocomplcache.vim'
+Bundle 'Shougo/neosnippet.vim'
+
+"Bundle 'garbas/vim-snipmate'
+""depended by snipmate
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+
+Bundle 'honza/vim-snippets'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
 " vim-scripts repos
 Bundle 'php.vim'
+Bundle 'surround.vim'
 
 
-set completeopt=longest,menu
-autocmd FileType python setlocal et sta sw=4 sts=4
-autocmd FileType python setlocal foldmethod=indent
+set completeopt=longest,menu,preview
+autocmd FileType python setlocal et sta sw=4 sts=4 foldmethod=indent 
+"autocmd FileType python setlocal mnifunc=python3complete#Complete
 set foldlevel=99
 
 
@@ -77,6 +85,11 @@ inoremap <C-B> <Left>
 nmap j gj
 nmap k gk
 cmap w!! w !sudo tee % 
+
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
 
 set pastetoggle=<F11>
@@ -91,9 +104,12 @@ nmap <F8> :TagbarToggle<CR>
 
 
 "Ctrl-P
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
 "
 "vim-latex
 set grepprg=grep\ -nH\ $*
@@ -111,7 +127,8 @@ let g:neocomplcache_enable_camel_case_completion = 1
 " Use underscore completion.
 let g:neocomplcache_enable_underbar_completion = 1
 " Sets minimum char length of syntax keyword.
-let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_min_syntax_length = 2
+
 
 
 let b:delimitMate_matchpairs = "(:),[:],{:}"
@@ -119,10 +136,14 @@ nmap <F9> :DelimitMateSwitch<CR>
 
 let g:EasyMotion_leader_key = '<Leader>'
 
-" Plugin key-mappings.
+"Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+"let  g:neosnippet#disable_runtime_snippets=1
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -137,3 +158,10 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+
+
+"powerline
+set laststatus=2
+set noshowmode
+"set rtp+=/usr/lib/python3.3/site-packages/powerline/bindings/vim
+set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
