@@ -42,6 +42,13 @@ set noswapfile
 syntax on       " 语法高亮
 filetype plugin indent on  " 文件类型插件
 
+set completeopt=longest,menu,preview
+autocmd FileType python setlocal et sta sw=4 sts=4 foldmethod=indent 
+"autocmd FileType python setlocal mnifunc=python3complete#Complete
+set foldlevel=99
+
+
+
 "Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -50,32 +57,23 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 "
-" original repos on github
-Bundle 'Raimondi/delimitMate'
-Bundle 'majutsushi/tagbar'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Shougo/neocomplcache.vim'
-Bundle 'Shougo/neosnippet.vim'
 
 "Bundle 'garbas/vim-snipmate'
 ""depended by snipmate
 "Bundle 'MarcWeber/vim-addon-mw-utils'
 "Bundle 'tomtom/tlib_vim'
 
-Bundle 'honza/vim-snippets'
+"COLOR  SCHEME
+Bundle 'w0ng/vim-hybrid'
+
+"PLUGINS
 Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-easymotion'
 " vim-scripts repos
 Bundle 'php.vim'
+
 Bundle 'surround.vim'
 
 
-set completeopt=longest,menu,preview
-autocmd FileType python setlocal et sta sw=4 sts=4 foldmethod=indent 
-"autocmd FileType python setlocal mnifunc=python3complete#Complete
-set foldlevel=99
 
 
 "SHORTCUT
@@ -95,20 +93,29 @@ map <c-h> <c-w>h
 set pastetoggle=<F11>
 "PLUGIN SETTINGS
 
+Bundle 'scrooloose/nerdcommenter'
 "nerdtree
+Bundle 'scrooloose/nerdtree'
 :nmap <F7> :NERDTreeToggle<CR>
 
+
+
+Bundle 'majutsushi/tagbar'
 "tagbar
 let g:tagbar_left = 1
 nmap <F8> :TagbarToggle<CR>
 
 
 "Ctrl-P
+Bundle 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_open_new_file = 't'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
+
 
 "
 "vim-latex
@@ -116,6 +123,7 @@ set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 
 
+Bundle 'Shougo/neocomplcache.vim'
 "neocomplacache
 let g:neocomplcache_enable_at_startup = 1
 " AutoComplPop like behavior.
@@ -131,10 +139,8 @@ let g:neocomplcache_min_syntax_length = 2
 
 
 
-let b:delimitMate_matchpairs = "(:),[:],{:}"
-nmap <F9> :DelimitMateSwitch<CR>
-
-let g:EasyMotion_leader_key = '<Leader>'
+Bundle 'Shougo/neosnippet.vim'
+Bundle 'honza/vim-snippets'
 
 "Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -158,7 +164,21 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+"Auto-pairs
+Bundle 'vim-scripts/Auto-Pairs'
+let g:AutoPairs={'{':'}'} 
+let g:AutoPairsShortcutToggle="<F9>"
 
+
+"esaymotion
+Bundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = '<Leader>'
+
+"Gist
+"depend on webapi-vim
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+let g:gist_clip_command = 'xsel -i -b -l /dev/null'
 
 "powerline
 set laststatus=2
