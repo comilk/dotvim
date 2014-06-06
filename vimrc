@@ -166,8 +166,10 @@ endif
 
 "Auto-pairs
 Bundle 'vim-scripts/Auto-Pairs'
-let g:AutoPairs={'{':'}'} 
+let g:AutoPairs={'{':'}', '(':')'} 
 let g:AutoPairsShortcutToggle="<F9>"
+let g:AutoPairsFlyMode = 1 
+let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 
 "esaymotion
@@ -185,3 +187,11 @@ set laststatus=2
 set noshowmode
 "set rtp+=/usr/lib/python3.3/site-packages/powerline/bindings/vim
 set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
+
+"sql
+Bundle 'vim-scripts/SQLComplete.vim'
+
+"indent guide
+Bundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_guide_size=1
+
