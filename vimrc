@@ -1,3 +1,7 @@
+"
+"SOMETIMES THE ORDER MATTERS
+"BE CAREFUL
+
 "APPEARENCE
 set nocompatible    " 关闭兼容模式
 set t_Co=256
@@ -15,7 +19,8 @@ if has("gui_running")
 endif
 
 "FUNCTION
-set tabstop=8
+set expandtab
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
@@ -38,14 +43,6 @@ set noswapfile
 "set si              " 智能缩进
 
 
-"LANGUAGE
-syntax on       " 语法高亮
-filetype plugin indent on  " 文件类型插件
-
-set completeopt=longest,menu,preview
-autocmd FileType python setlocal et sta sw=4 sts=4 foldmethod=indent 
-"autocmd FileType python setlocal mnifunc=python3complete#Complete
-set foldlevel=99
 
 
 
@@ -55,24 +52,13 @@ call vundle#rc()
 " let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
-"
-
-"Bundle 'garbas/vim-snipmate'
-""depended by snipmate
-"Bundle 'MarcWeber/vim-addon-mw-utils'
-"Bundle 'tomtom/tlib_vim'
 
 "COLOR  SCHEME
 Bundle 'w0ng/vim-hybrid'
 
 "PLUGINS
 Bundle 'scrooloose/syntastic'
-" vim-scripts repos
-Bundle 'php.vim'
-
 Bundle 'surround.vim'
-
 
 
 
@@ -91,13 +77,12 @@ map <c-h> <c-w>h
 
 
 set pastetoggle=<F11>
-"PLUGIN SETTINGS
+
 
 Bundle 'scrooloose/nerdcommenter'
 "nerdtree
 Bundle 'scrooloose/nerdtree'
 :nmap <F7> :NERDTreeToggle<CR>
-
 
 
 Bundle 'majutsushi/tagbar'
@@ -116,11 +101,6 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_new_file = 't'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 
-
-"
-"vim-latex
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor = "latex"
 
 
 Bundle 'Shougo/neocomplcache.vim'
@@ -141,7 +121,6 @@ let g:neocomplcache_min_syntax_length = 2
 
 Bundle 'Shougo/neosnippet.vim'
 Bundle 'honza/vim-snippets'
-
 "Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -188,10 +167,30 @@ set noshowmode
 "set rtp+=/usr/lib/python3.3/site-packages/powerline/bindings/vim
 set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
 
-"sql
-Bundle 'vim-scripts/SQLComplete.vim'
 
 "indent guide
 Bundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_guide_size=1
 
+"Language support
+Bundle 'php.vim'
+"sql
+Bundle 'vim-scripts/SQLComplete.vim'
+"vim-latex
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+
+"jade
+Bundle 'digitaltoad/vim-jade'
+
+
+"LANGUAGE
+syntax on       " 语法高亮
+filetype plugin indent on  " 文件类型插件
+
+set completeopt=longest,menu,preview
+autocmd FileType python setlocal expandtab startofline tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=indent 
+autocmd FileType jade setlocal expandtab startofline tabstop=2 shiftwidth=2 softtabstop=2 foldmethod=indent 
+autocmd FileType html,xml setlocal expandtab startofline tabstop=2 shiftwidth=2 softtabstop=2 
+"autocmd FileType python setlocal mnifunc=python3complete#Complete
+set foldlevel=99
