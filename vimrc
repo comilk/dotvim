@@ -6,17 +6,17 @@
 set nocompatible    " 关闭兼容模式
 set t_Co=256
 "set background=dark
-colorscheme monokai
+colorscheme molokai
 set encoding=utf8
 set fileencodings=utf8,gb2312,gb18030,ansi
 set number		" 显示行号
 set cursorline
-
-if has("gui_running")
-    colorscheme smyck
-    set columns=88
-    set lines=42
-endif
+set guifont=Anonymice_Powerline:h12
+"if has("gui_running")
+    "colorscheme smyck
+    "set columns=88
+    "set lines=42
+"endif
 
 "FUNCTION
 set expandtab
@@ -53,7 +53,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 "COLOR  SCHEME
-Plugin 'sickill/vim-monokai'
+Plugin 'tomasr/molokai'
 Plugin 'w0ng/vim-hybrid'
 
 "PLUGINS
@@ -69,7 +69,7 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'vim-scripts/Tagbar'
 "tagbar
-let g:tagbar_left = 1
+let g:tagbar_left = 0
 nmap <F8> :TagbarToggle<CR>
 
 
@@ -146,7 +146,7 @@ let g:gist_clip_command = 'xsel -i -b -l /dev/null'
 set laststatus=2
 set noshowmode
 "set rtp+=/usr/lib/python3.3/site-packages/powerline/bindings/vim
-set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 
 "indent guide
@@ -192,11 +192,11 @@ set completeopt=longest,menu,preview
 
 set foldlevel=20
 autocmd FileType python setlocal expandtab startofline tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=indent 
-autocmd FileType python nnoremap <buffer> <F9> <ESC>:w<CR>:exec '!python' shellescape(@%, 1)<CR><CR>
+autocmd FileType python nnoremap <buffer> <F9> <ESC>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
 
 autocmd FileType jade setlocal expandtab startofline tabstop=2 shiftwidth=2 softtabstop=2 foldmethod=indent 
 
-autocmd FileType html,xml setlocal expandtab startofline tabstop=2 shiftwidth=2 softtabstop=2 
+autocmd FileType html*,xml setlocal expandtab startofline tabstop=2 shiftwidth=2 softtabstop=2 
 
 "autocmd FileType python setlocal mnifunc=python3complete#Complete
 "
