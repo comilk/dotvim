@@ -19,6 +19,7 @@ set guifont=Anonymice_Powerline:h12
 "endif
 
 "FUNCTION
+autocmd! bufwritepost .vimrc source ~/.vimrc
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -50,7 +51,7 @@ set noswapfile
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle required! 
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 "COLOR  SCHEME
 Plugin 'tomasr/molokai'
@@ -118,7 +119,6 @@ imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
-
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
@@ -129,7 +129,7 @@ Plugin 'vim-scripts/Auto-Pairs'
 let g:AutoPairs={'{':'}', '(':')'} 
 let g:AutoPairsShortcutToggle="<F10>"
 let g:AutoPairsFlyMode = 1 
-let g:AutoPairsShortcutBackInsert = '<M-b>'
+let g:AutoPairsShortcutBackInsert = '<C-b>'
 
 
 "esaymotion
@@ -153,6 +153,10 @@ set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_guide_size=1
 
+"emmet 
+Plugin 'mattn/emmet-vim'
+
+
 "Language support
 Plugin 'php.vim'
 "sql
@@ -163,6 +167,7 @@ let g:tex_flavor = "latex"
 
 "jade
 Plugin 'digitaltoad/vim-jade'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -185,7 +190,7 @@ map <c-h> <c-w>h
 
 set pastetoggle=<F11>
 " CDC = Change to Directory of Current file
-command CDC cd %:p:h
+command! CDC cd %:p:h
 
 "LANGUAGE
 set completeopt=longest,menu,preview
