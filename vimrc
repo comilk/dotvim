@@ -46,6 +46,8 @@ Plugin 'gmarik/Vundle.vim'
 
 "COLOR  SCHEME
 Plugin 'tomasr/molokai'
+let g:molokai_original = 1
+let g:rehash256 = 1
 Plugin 'w0ng/vim-hybrid'
 
 "PLUGINS
@@ -115,9 +117,9 @@ endif
 
 "Auto-pairs
 Plugin 'vim-scripts/Auto-Pairs'
-let g:AutoPairs={'{':'}', '(':')'} 
+let g:AutoPairs={'{':'}', '(':')', '[':']'} 
 let g:AutoPairsShortcutToggle="<F10>"
-let g:AutoPairsFlyMode = 1 
+let g:AutoPairsFlyMode = 0 
 let g:AutoPairsShortcutBackInsert = '<C-b>'
 
 
@@ -125,18 +127,13 @@ let g:AutoPairsShortcutBackInsert = '<C-b>'
 Plugin 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<Leader>'
 
-"Gist
-"depend on webapi-vim
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-let g:gist_clip_command = 'xsel -i -b -l /dev/null'
-
-"powerline
+"airline
 set laststatus=2
 set noshowmode
-"set rtp+=/usr/lib/python3.3/site-packages/powerline/bindings/vim
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-
+Plugin 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='powerlineish'
 
 "indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -162,7 +159,7 @@ Plugin 'digitaltoad/vim-jade'
 
 "javascript
 Plugin 'jelera/vim-javascript-syntax'
-
+Plugin 'marijnh/tern_for_vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -207,3 +204,10 @@ function! TrimWhiteSpace()
 endfunction
 nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
 autocmd FileType javascript autocmd BufWritePre * :call TrimWhiteSpace()
+
+" Change cursor shape between insert and normal mode in iTerm2.app
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
