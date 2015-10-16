@@ -1,4 +1,3 @@
-"
 "SOMETIMES THE ORDER MATTERS
 "BE CAREFUL
 
@@ -12,11 +11,7 @@ set fileencodings=utf8,gb2312,gb18030,ansi
 set number		" 显示行号
 set cursorline
 set guifont=Anonymice_Powerline:h12
-"if has("gui_running")
-    "colorscheme smyck
-    "set columns=88
-    "set lines=42
-"endif
+
 
 "FUNCTION
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -31,7 +26,6 @@ set hid             " 可以在没有保存的情况下切换buffer
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l "退格键和方向键可以换行
 set incsearch       " 增量式搜索
-"set nohlsearch
 set hlsearch        " 高亮搜索
 set ignorecase      " 搜索时忽略大小写
 set smartcase	    "搜索时如果全部小写，则忽略大小写
@@ -42,9 +36,6 @@ set nobackup        " 关闭备份
 set noswapfile
 "set lbr             " 在breakat字符处而不是最后一个字符处断行
 "set si              " 智能缩进
-
-
-
 
 
 "Vundle
@@ -60,19 +51,20 @@ Plugin 'w0ng/vim-hybrid'
 "PLUGINS
 Plugin 'scrooloose/syntastic'
 Plugin 'surround.vim'
-
-
 Plugin 'scrooloose/nerdcommenter'
+
 "nerdtree
 Plugin 'scrooloose/nerdtree'
 :nmap <F7> :NERDTreeToggle<CR>
 
-
-Plugin 'vim-scripts/Tagbar'
 "tagbar
+Plugin 'vim-scripts/Tagbar'
 let g:tagbar_left = 0
 nmap <F8> :TagbarToggle<CR>
 
+"ack.vim
+Plugin 'mileszs/ack.vim'
+let g:ackprg = 'ag --vimgrep'
 
 "Ctrl-P
 Plugin 'kien/ctrlp.vim'
@@ -83,8 +75,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_new_file = 't'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
-
-
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
 Plugin 'Shougo/neocomplcache.vim'
 "neocomplacache
@@ -100,14 +91,12 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Sets minimum char length of syntax keyword.
 let g:neocomplcache_min_syntax_length = 2
 
-
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'honza/vim-snippets'
 "Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-
 let  g:neosnippet#disable_runtime_snippets={ '_':1, }
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
@@ -156,6 +145,9 @@ let g:indent_guides_guide_size=1
 "emmet 
 Plugin 'mattn/emmet-vim'
 
+"tabular
+Plugin 'godlygeek/tabular'
+
 
 "Language support
 Plugin 'php.vim'
@@ -167,6 +159,9 @@ let g:tex_flavor = "latex"
 
 "jade
 Plugin 'digitaltoad/vim-jade'
+
+"javascript
+Plugin 'jelera/vim-javascript-syntax'
 
 
 " All of your Plugins must be added before the following line
@@ -188,7 +183,7 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-set pastetoggle=<F11>
+
 " CDC = Change to Directory of Current file
 command! CDC cd %:p:h
 
@@ -206,5 +201,9 @@ autocmd FileType html*,xml setlocal expandtab startofline tabstop=2 shiftwidth=2
 "autocmd FileType python setlocal mnifunc=python3complete#Complete
 "
 
-
-
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
+autocmd FileType javascript autocmd BufWritePre * :call TrimWhiteSpace()
