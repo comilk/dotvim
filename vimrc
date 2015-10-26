@@ -4,7 +4,7 @@
 "APPEARENCE
 set nocompatible    " 关闭兼容模式
 set t_Co=256
-"set background=dark
+set background=dark
 colorscheme molokai
 set encoding=utf8
 set fileencodings=utf8,gb2312,gb18030,ansi
@@ -63,8 +63,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Tagbar'
 let g:tagbar_left = 0
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_javascript = {
+    \ 'ctagstype' : 'js'
+\ }
 
-"ack.vim
+"ack & ag
+Plugin 'rking/ag.vim'
 Plugin 'mileszs/ack.vim'
 let g:ackprg = 'ag --vimgrep'
 
@@ -78,49 +82,32 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_new_file = 't'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+let g:ctrlp_buftag_types = {'javascript': '--language-force=js'}
+"let g:ctrlp_buftag_types = {  'javascript' : {  'bin': 'jsctags',  'args': '-f -',  },  }
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:30'
+noremap <leader>p :CtrlPBufTag<CR>
+"noremap <leader>e :CtrlPCurFile<CR>
+"noremap <leader>b :CtrlPBuffer<CR>
+"noremap <leader>} :CtrlPTag<CR>
+"noremap <leader>s :CtrlPSession<CR>
+"noremap <leader>f :CtrlPFiletype<CR>
 
-Plugin 'Shougo/neocomplcache.vim'
-"neocomplacache
-let g:neocomplcache_enable_at_startup = 1
-" AutoComplPop like behavior.
-let g:neocomplcache_enable_auto_select = 0
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underscore completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Sets minimum char length of syntax keyword.
-let g:neocomplcache_min_syntax_length = 2
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_invoke_completion = '<C-Space>'
 
-Plugin 'Shougo/neosnippet.vim'
+Plugin 'SirVer/ultisnips'
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 Plugin 'honza/vim-snippets'
-"Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-let  g:neosnippet#disable_runtime_snippets={ '_':1, }
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
 
 "Auto-pairs
 Plugin 'vim-scripts/Auto-Pairs'
 let g:AutoPairs={'{':'}', '(':')', '[':']'} 
 let g:AutoPairsShortcutToggle="<F10>"
 let g:AutoPairsFlyMode = 0 
-let g:AutoPairsShortcutBackInsert = '<C-b>'
+"let g:AutoPairsShortcutBackInsert = '<C-b>'
 
 
 "esaymotion
@@ -159,6 +146,7 @@ Plugin 'digitaltoad/vim-jade'
 
 "javascript
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
 
 " All of your Plugins must be added before the following line
@@ -168,17 +156,27 @@ filetype plugin indent on  " 文件类型插件
 syntax on       " 语法高亮
 
 "SHORTCUT
-inoremap <C-F> <Right>
-inoremap <C-B> <Left>
-:nmap \l :setlocal number!<CR>
+nmap <leader>l :setlocal number!<CR>
 nmap j gj
 nmap k gk
 cmap w!! w !sudo tee % 
+map <space> <leader>
+map <space><space> <leader><leader>
 
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+" smash escape
+inoremap jk <esc>
+inoremap kj <esc>
+
+" change cursor position in insert mode
+inoremap <C-f> <Right>
+inoremap <C-l> <Right>
+inoremap <C-b> <Left>
+inoremap <C-h> <Left>
+
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <C-l> <c-w>l
+nnoremap <C-h> <c-w>h
 
 
 " CDC = Change to Directory of Current file
