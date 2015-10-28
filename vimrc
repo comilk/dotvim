@@ -96,6 +96,7 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 Plugin 'SirVer/ultisnips'
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
@@ -162,6 +163,7 @@ nmap k gk
 cmap w!! w !sudo tee % 
 map <space> <leader>
 map <space><space> <leader><leader>
+imap <c-d> <del>
 
 " smash escape
 inoremap jk <esc>
@@ -177,7 +179,6 @@ nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 nnoremap <C-h> <c-w>h
-
 
 " CDC = Change to Directory of Current file
 command! CDC cd %:p:h
