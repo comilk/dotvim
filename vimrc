@@ -83,14 +83,8 @@ let g:ctrlp_open_new_file = 't'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_buftag_types = {'javascript': '--language-force=js'}
-"let g:ctrlp_buftag_types = {  'javascript' : {  'bin': 'jsctags',  'args': '-f -',  },  }
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:30'
 noremap <leader>p :CtrlPBufTag<CR>
-"noremap <leader>e :CtrlPCurFile<CR>
-"noremap <leader>b :CtrlPBuffer<CR>
-"noremap <leader>} :CtrlPTag<CR>
-"noremap <leader>s :CtrlPSession<CR>
-"noremap <leader>f :CtrlPFiletype<CR>
 
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
@@ -138,9 +132,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'php.vim'
 "sql
 Plugin 'vim-scripts/SQLComplete.vim'
-"vim-latex
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor = "latex"
 
 "jade
 Plugin 'digitaltoad/vim-jade'
@@ -149,6 +140,8 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
+
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
