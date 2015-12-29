@@ -1,42 +1,4 @@
-"SOMETIMES THE ORDER MATTERS
-"BE CAREFUL
-
-"APPEARENCE
-set nocompatible    " 关闭兼容模式
-set t_Co=256
-set background=dark
-colorscheme molokai
-set encoding=utf8
-set fileencodings=utf8,gb2312,gb18030,ansi
-set number		" 显示行号
-set cursorline
-set guifont=Anonymice_Powerline:h12
-
-
-"FUNCTION
-autocmd! bufwritepost .vimrc source ~/.vimrc
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set autoindent
-set showcmd         " 显示命令
-set lz              " 当运行宏时，在命令执行完成之前，不重绘屏幕
-set hid             " 可以在没有保存的情况下切换buffer
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l "退格键和方向键可以换行
-set incsearch       " 增量式搜索
-set hlsearch        " 高亮搜索
-set ignorecase      " 搜索时忽略大小写
-set smartcase	    "搜索时如果全部小写，则忽略大小写
-"set magic           " h magic吧
-set showmatch       " 显示匹配的括号
-set nobackup        " 关闭备份
-"set backupdir=.,/tmp
-set noswapfile
-"set lbr             " 在breakat字符处而不是最后一个字符处断行
-"set si              " 智能缩进
-
+"ORDER MATTERS
 
 "Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -49,6 +11,7 @@ Plugin 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
 Plugin 'altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
 
 Plugin 'scrooloose/syntastic'
 Plugin 'surround.vim'
@@ -155,8 +118,42 @@ Plugin 'fatih/vim-go'
 " All of your Plugins must be added before the following line
 call vundle#end()
 
+
 filetype plugin indent on  " 文件类型插件
 syntax on       " 语法高亮
+
+"APPEARENCE
+set nocompatible    " 关闭兼容模式
+set t_Co=256
+set background=dark
+colorscheme molokai
+set encoding=utf8
+set fileencodings=utf8,gb2312,gb18030,ansi
+set number		" 显示行号
+set cursorline
+set guifont=Anonymice_Powerline:h12
+
+
+"FUNCTION
+autocmd! bufwritepost .vimrc source ~/.vimrc
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+set showcmd         " 显示命令
+set lz              " 当运行宏时，在命令执行完成之前，不重绘屏幕
+set hid             " 可以在没有保存的情况下切换buffer
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l "退格键和方向键可以换行
+set incsearch       " 增量式搜索
+set hlsearch        " 高亮搜索
+set ignorecase      " 搜索时忽略大小写
+set smartcase	    "搜索时如果全部小写，则忽略大小写
+"set magic           " h magic吧
+set showmatch       " 显示匹配的括号
+set nobackup        " 关闭备份
+set noswapfile
 
 "SHORTCUT
 nmap <leader>l :setlocal number!<CR>
