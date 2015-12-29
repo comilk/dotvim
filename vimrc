@@ -48,9 +48,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
-Plugin 'w0ng/vim-hybrid'
+Plugin 'altercation/vim-colors-solarized'
 
-"PLUGINS
 Plugin 'scrooloose/syntastic'
 Plugin 'surround.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -85,6 +84,13 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 let g:ctrlp_buftag_types = {'javascript': '--language-force=js'}
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:30'
 noremap <leader>p :CtrlPBufTag<CR>
+if executable('ag')
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    "ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+endif
 
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
@@ -127,6 +133,9 @@ Plugin 'mattn/emmet-vim'
 "tabular
 Plugin 'godlygeek/tabular'
 
+"git
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 "Language support
 Plugin 'php.vim'
