@@ -84,13 +84,14 @@ set noshowmode
 Plugin 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='badwolf'
 
 "indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_guide_size=1
 
-"emmet 
+"emmet
 Plugin 'mattn/emmet-vim'
 
 "tabular
@@ -202,6 +203,12 @@ function! TrimWhiteSpace()
 endfunction
 nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
 autocmd FileType javascript autocmd BufWritePre * :call TrimWhiteSpace()
+
+function! SetIndent(i)
+    let &tabstop = a:i
+    let &shiftwidth = a:i
+    let &softtabstop = a:i
+endfunction
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
