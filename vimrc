@@ -91,13 +91,9 @@ let g:airline_theme='badwolf'
 Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_guide_size=1
 
-"emmet
+Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'mattn/emmet-vim'
-
-"tabular
 Plugin 'godlygeek/tabular'
-
-"git
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
@@ -196,6 +192,7 @@ autocmd FileType html*,xml setlocal expandtab startofline tabstop=2 shiftwidth=2
 
 "autocmd FileType python setlocal mnifunc=python3complete#Complete
 "
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
