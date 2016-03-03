@@ -81,7 +81,8 @@ let g:EasyMotion_leader_key = '<Leader>'
 "airline
 set laststatus=2
 set noshowmode
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -118,6 +119,7 @@ call vundle#end()
 
 filetype plugin indent on  " 文件类型插件
 syntax on       " 语法高亮
+set synmaxcol=250
 
 "APPEARENCE
 set nocompatible    " 关闭兼容模式
