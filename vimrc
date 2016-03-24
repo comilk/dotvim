@@ -67,11 +67,13 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 Plugin 'honza/vim-snippets'
 
 "Auto-pairs
-Plugin 'vim-scripts/Auto-Pairs'
-let g:AutoPairs={'{':'}', '(':')', '[':']'} 
-let g:AutoPairsShortcutToggle="<F10>"
-let g:AutoPairsFlyMode = 0 
+"Plugin 'vim-scripts/Auto-Pairs'
+"let g:AutoPairs={'{':'}', '(':')', '[':']'} 
+"let g:AutoPairsShortcutToggle="<F10>"
+"let g:AutoPairsFlyMode = 0 
 "let g:AutoPairsShortcutBackInsert = '<C-b>'
+Plugin 'raimondi/delimitmate'
+let delimitMate_expand_cr = 1
 
 
 "esaymotion
@@ -89,6 +91,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='badwolf'
 
 "indent guide
+Plugin 'Yggdroot/indentLine'
 Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_guide_size=1
 
@@ -215,3 +218,4 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_SR = "\<Esc>]50;CursorShape=2\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
