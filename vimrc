@@ -14,6 +14,8 @@ Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
 
 Plugin 'scrooloose/syntastic'
+let g:syntastic_javascript_checkers = ['eslint']
+
 Plugin 'surround.vim'
 Plugin 'scrooloose/nerdcommenter'
 
@@ -92,8 +94,6 @@ let g:airline_theme='badwolf'
 
 "indent guide
 Plugin 'Yggdroot/indentLine'
-Plugin 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_guide_size=1
 
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'mattn/emmet-vim'
@@ -110,9 +110,12 @@ Plugin 'vim-scripts/SQLComplete.vim'
 Plugin 'digitaltoad/vim-jade'
 
 "javascript
-Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/yajs.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
+
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
 
 Plugin 'fatih/vim-go'
 
