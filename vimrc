@@ -12,6 +12,8 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
+Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'morhetz/gruvbox'
 
 Plugin 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers = ['eslint']
@@ -93,7 +95,10 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='badwolf'
 
 "indent guide
+"will set conceallevel to 2, which is bad for JSON file. Use vim-json to fix.
 Plugin 'Yggdroot/indentLine'
+Plugin 'elzr/vim-json'
+let g:vim_json_syntax_conceal = 0
 
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'mattn/emmet-vim'
@@ -110,7 +115,6 @@ Plugin 'vim-scripts/SQLComplete.vim'
 Plugin 'digitaltoad/vim-jade'
 
 "javascript
-Plugin 'othree/yajs.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
 
@@ -159,6 +163,8 @@ set smartcase	    "搜索时如果全部小写，则忽略大小写
 set showmatch       " 显示匹配的括号
 set nobackup        " 关闭备份
 set noswapfile
+set wildmenu
+set mouse=a
 
 "SHORTCUT
 nmap <leader>l :setlocal number!<CR>
@@ -221,4 +227,8 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_SR = "\<Esc>]50;CursorShape=2\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+if has("nvim")
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
