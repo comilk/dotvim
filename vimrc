@@ -94,6 +94,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='badwolf'
 
+"Auto indent detect
+Plugin 'tpope/vim-sleuth'
+
 "indent guide
 "will set conceallevel to 2, which is bad for JSON file. Use vim-json to fix.
 Plugin 'Yggdroot/indentLine'
@@ -146,7 +149,6 @@ set guifont=Anonymice_Powerline:h12
 "FUNCTION
 autocmd! bufwritepost .vimrc source ~/.vimrc
 set expandtab
-set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
@@ -197,15 +199,13 @@ command! CDC cd %:p:h
 set completeopt=longest,menu,preview
 
 set foldlevel=20
-autocmd FileType python setlocal expandtab startofline tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=indent 
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 foldmethod=indent 
 autocmd FileType python nnoremap <buffer> <F9> <ESC>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
 
-autocmd FileType jade setlocal expandtab startofline tabstop=2 shiftwidth=2 softtabstop=2 foldmethod=indent 
+autocmd FileType jade setlocal expandtab shiftwidth=2 softtabstop=2 foldmethod=indent 
 
-autocmd FileType html*,xml setlocal expandtab startofline tabstop=2 shiftwidth=2 softtabstop=2 
+autocmd FileType html*,xml setlocal expandtab shiftwidth=2 softtabstop=-1
 
-"autocmd FileType python setlocal mnifunc=python3complete#Complete
-"
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Removes trailing spaces
@@ -216,7 +216,6 @@ nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
 autocmd FileType javascript autocmd BufWritePre * :call TrimWhiteSpace()
 
 function! SetIndent(i)
-    let &tabstop = a:i
     let &shiftwidth = a:i
     let &softtabstop = a:i
 endfunction
