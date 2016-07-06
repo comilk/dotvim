@@ -45,6 +45,7 @@ let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_open_new_file = 't'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
