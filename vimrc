@@ -67,19 +67,13 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 Plugin 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 Plugin 'honza/vim-snippets'
 
-"Auto-pairs
-"Plugin 'vim-scripts/Auto-Pairs'
-"let g:AutoPairs={'{':'}', '(':')', '[':']'} 
-"let g:AutoPairsShortcutToggle="<F10>"
-"let g:AutoPairsFlyMode = 0 
-"let g:AutoPairsShortcutBackInsert = '<C-b>'
 Plugin 'raimondi/delimitmate'
 let delimitMate_expand_cr = 1
-
 
 "esaymotion
 Plugin 'Lokaltog/vim-easymotion'
@@ -109,23 +103,27 @@ Plugin 'mattn/emmet-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-repeat'
 
 "Language support
-Plugin 'php.vim'
-"sql
-Plugin 'vim-scripts/SQLComplete.vim'
+"Plugin 'php.vim'
+"Plugin 'vim-scripts/SQLComplete.vim'
 
-"jade
-Plugin 'digitaltoad/vim-jade'
+"Plugin 'digitaltoad/vim-jade'
 
 "javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
-
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
 
 Plugin 'fatih/vim-go'
+
+"clojure
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -133,18 +131,18 @@ call vundle#end()
 
 filetype plugin indent on  " 文件类型插件
 syntax on       " 语法高亮
-set synmaxcol=250
+set synmaxcol=3000
 
 "APPEARENCE
 set nocompatible    " 关闭兼容模式
 set t_Co=256
 set background=dark
-colorscheme molokai
+colorscheme gruvbox
 set encoding=utf8
 set fileencodings=utf8,gb2312,gb18030,ansi
 set number		" 显示行号
 set cursorline
-set guifont=Anonymice_Powerline:h12
+set guifont=Sauce_Code_Powerline:h12
 
 
 "FUNCTION
@@ -208,6 +206,11 @@ autocmd FileType jade setlocal expandtab shiftwidth=2 softtabstop=2 foldmethod=i
 autocmd FileType html*,xml setlocal expandtab shiftwidth=2 softtabstop=-1
 
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+au BufEnter *.clj RainbowParenthesesActivate
+au Syntax clojure RainbowParenthesesLoadRound
+au Syntax clojure RainbowParenthesesLoadSquare
+au Syntax clojure RainbowParenthesesLoadBraces
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
