@@ -24,6 +24,7 @@ Plugin 'scrooloose/nerdcommenter'
 "nerdtree
 Plugin 'scrooloose/nerdtree'
 :nmap <F7> :NERDTreeToggle<CR>
+:nmap <leader>t :NERDTreeToggle<CR>
 
 "tagbar
 Plugin 'vim-scripts/Tagbar'
@@ -39,11 +40,7 @@ Plugin 'mileszs/ack.vim'
 let g:ackprg = 'ag --vimgrep'
 
 "Ctrl-P
-Plugin 'kien/ctrlp.vim'
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<C-p>'
-let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_cmd = 'CtrlPMixed'
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_open_new_file = 't'
@@ -77,7 +74,6 @@ let delimitMate_expand_cr = 1
 
 "esaymotion
 Plugin 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<Leader>'
 
 "airline
 set laststatus=2
@@ -211,6 +207,7 @@ au BufEnter *.clj RainbowParenthesesActivate
 au Syntax clojure RainbowParenthesesLoadRound
 au Syntax clojure RainbowParenthesesLoadSquare
 au Syntax clojure RainbowParenthesesLoadBraces
+au Syntax clojure let g:loaded_delimitMate = 0
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
