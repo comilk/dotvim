@@ -118,6 +118,19 @@ Plug 'fatih/vim-go'
 Plug 'kien/rainbow_parentheses.vim' 
 Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
 Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
+if has('nvim') 
+  Plug 'neovim/node-host' | Plug 'markx/nvim-parinfer.js'
+  let g:sexp_enable_insert_mode_mappings = 0
+endif
+
+Plug 'wlangstroth/vim-racket'
+Plug 'jpalardy/vim-slime'
+if ('nvim') 
+  let g:slime_target = "tmux"
+else
+  let g:slime_target = "tmux"
+endif
+Plug 'MicahElliott/vrod', {'dir': '~/.vim/bundle/vim-racket-omni-docs'}
 
 au Syntax clojure,racket,lisp RainbowParenthesesActivate
 au Syntax clojure,racket,lisp RainbowParenthesesLoadRound
