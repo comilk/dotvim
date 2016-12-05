@@ -1,33 +1,30 @@
 "ORDER MATTERS
 
-"Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle required! 
-Plugin 'gmarik/Vundle.vim'
+"Plug
+call plug#begin('~/.vim/bundle')
 
 "COLOR  SCHEME
-Plugin 'tomasr/molokai'
+Plug 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
-Plugin 'kristijanhusak/vim-hybrid-material'
-Plugin 'morhetz/gruvbox'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'morhetz/gruvbox'
 
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers = ['eslint']
 
-Plugin 'surround.vim'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'surround.vim'
+Plug 'scrooloose/nerdcommenter'
 
 "nerdtree
-Plugin 'scrooloose/nerdtree'
-:nmap <F7> :NERDTreeToggle<CR>
-:nmap <leader>t :NERDTreeToggle<CR>
+Plug 'scrooloose/nerdtree'
+nmap <F7> :NERDTreeToggle<CR>
+nmap <leader>t :NERDTreeToggle<CR>
 
 "tagbar
-Plugin 'vim-scripts/Tagbar'
+Plug 'majutsushi/tagbar'
 let g:tagbar_left = 0
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_javascript = {
@@ -35,12 +32,12 @@ let g:tagbar_type_javascript = {
 \ }
 
 "ack & ag
-Plugin 'rking/ag.vim'
-Plugin 'mileszs/ack.vim'
-let g:ackprg = 'ag --vimgrep'
+Plug 'rking/ag.vim'
 
 "Ctrl-P
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_open_new_file = 't'
@@ -57,72 +54,78 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_key_invoke_completion = '<C-Space>'
+"let g:ycm_key_invoke_completion = '<c-/>'
+" map ALT + / to invoke compeltion
+imap <M-/> <C-Space>
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_semantic_triggers = { 'clojure': [ 're!\(\w\w\w' ], 'racket': [ 're!\(\w\w\w' ] }
 
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips' 
+Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-Plugin 'honza/vim-snippets'
 
-Plugin 'raimondi/delimitmate'
+Plug 'raimondi/delimitmate'
 let delimitMate_expand_cr = 1
 
 "esaymotion
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 "airline
 set laststatus=2
 set noshowmode
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='badwolf'
 
 "Auto indent detect
-Plugin 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth'
 
 "indent guide
 "will set conceallevel to 2, which is bad for JSON file. Use vim-json to fix.
-Plugin 'Yggdroot/indentLine'
-Plugin 'elzr/vim-json'
+Plug 'Yggdroot/indentLine'
+Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
-Plugin 'severin-lemaignan/vim-minimap'
-Plugin 'mattn/emmet-vim'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-repeat'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'mattn/emmet-vim'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-repeat'
 
 "Language support
-"Plugin 'php.vim'
-"Plugin 'vim-scripts/SQLComplete.vim'
+"Plug 'php.vim'
+"Plug 'vim-scripts/SQLComplete.vim'
 
-"Plugin 'digitaltoad/vim-jade'
+"Plug 'digitaltoad/vim-jade'
 
 "javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'marijnh/tern_for_vim'
+Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
 
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
-"clojure
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+"lisp
+Plug 'kien/rainbow_parentheses.vim' 
+Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
+Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
-" All of your Plugins must be added before the following line
-call vundle#end()
+au Syntax clojure,racket,lisp RainbowParenthesesActivate
+au Syntax clojure,racket,lisp RainbowParenthesesLoadRound
+au Syntax clojure,racket,lisp RainbowParenthesesLoadSquare
+au Syntax clojure,racket,lisp RainbowParenthesesLoadBraces
+au Syntax clojure,racket,lisp let b:loaded_delimitMate = 1
+
+call plug#end()
 
 
 filetype plugin indent on  " 文件类型插件
@@ -162,6 +165,9 @@ set nobackup        " 关闭备份
 set noswapfile
 set wildmenu
 set mouse=a
+if has("nvim")
+  set inccommand=split
+endif
 
 "SHORTCUT
 nmap <leader>l :setlocal number!<CR>
@@ -187,6 +193,10 @@ nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 nnoremap <C-h> <c-w>h
 
+if has("nvim")
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 " CDC = Change to Directory of Current file
 command! CDC cd %:p:h
 
@@ -203,11 +213,7 @@ autocmd FileType html*,xml setlocal expandtab shiftwidth=2 softtabstop=-1
 
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-au BufEnter *.clj RainbowParenthesesActivate
-au Syntax clojure RainbowParenthesesLoadRound
-au Syntax clojure RainbowParenthesesLoadSquare
-au Syntax clojure RainbowParenthesesLoadBraces
-au Syntax clojure let g:loaded_delimitMate = 0
+autocmd filetype clojure, racket set lisp
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -231,4 +237,5 @@ endif
 if has("nvim")
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
+endif
+
