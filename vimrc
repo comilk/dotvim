@@ -4,6 +4,7 @@
 call plug#begin('~/.vim/bundle')
 
 "COLOR  SCHEME
+Plug 'joshdick/onedark.vim'
 Plug 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -12,7 +13,7 @@ let g:solarized_termcolors=256
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'morhetz/gruvbox'
 
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic' | Plug 'mtscout6/syntastic-local-eslint.vim'
 let g:syntastic_javascript_checkers = ['eslint']
 
 Plug 'surround.vim'
@@ -45,7 +46,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_buftag_types = {'javascript': '--language-force=js'}
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:30'
-noremap <leader>p :CtrlPBufTag<CR>
+noremap <leader>r :CtrlPBufTag<CR>
 if executable('ag')
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -58,8 +59,6 @@ Plug 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 "let g:ycm_key_invoke_completion = '<c-/>'
-" map ALT + / to invoke compeltion
-imap <M-/> <C-Space>
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_semantic_triggers = { 'clojure': [ 're!\(\w\w\w' ], 'racket': [ 're!\(\w\w\w' ] }
 
@@ -93,9 +92,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
-Plug 'severin-lemaignan/vim-minimap'
 Plug 'mattn/emmet-vim'
-Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
@@ -113,6 +110,12 @@ Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
 
 Plug 'fatih/vim-go'
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 "lisp
 Plug 'kien/rainbow_parentheses.vim' 
