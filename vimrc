@@ -13,8 +13,12 @@ let g:solarized_termcolors=256
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'morhetz/gruvbox'
 
-Plug 'scrooloose/syntastic' | Plug 'mtscout6/syntastic-local-eslint.vim'
-let g:syntastic_javascript_checkers = ['eslint']
+Plug 'w0rp/ale'
+nmap <silent> [e <Plug>(ale_previous_wrap)
+nmap <silent> ]e <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 
 Plug 'surround.vim'
 Plug 'scrooloose/nerdcommenter'
