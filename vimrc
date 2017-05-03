@@ -24,9 +24,10 @@ Plug 'surround.vim'
 Plug 'scrooloose/nerdcommenter'
 
 "nerdtree
-Plug 'scrooloose/nerdtree'
-nmap <F7> :NERDTreeToggle<CR>
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+let g:NERDTreeHijackNetrw=0
 nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
 
 "tagbar
 Plug 'majutsushi/tagbar'
@@ -66,7 +67,7 @@ let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_semantic_triggers = { 'clojure': [ 're!\(\w\w\w' ], 'racket': [ 're!\(\w\w\w' ] }
 
-Plug 'SirVer/ultisnips' 
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
@@ -122,17 +123,17 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 "lisp
-Plug 'kien/rainbow_parentheses.vim' 
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
-Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
-if has('nvim') 
+Plug 'guns/vim-sexp' , {'for': ['clojure', 'scheme', 'lisp'] } | Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'scheme', 'lisp']}
+if has('nvim')
   Plug 'neovim/node-host' | Plug 'markx/nvim-parinfer.js'
   let g:sexp_enable_insert_mode_mappings = 0
 endif
 
 Plug 'wlangstroth/vim-racket'
 Plug 'jpalardy/vim-slime'
-if ('nvim') 
+if ('nvim')
   let g:slime_target = "tmux"
 else
   let g:slime_target = "tmux"
@@ -193,7 +194,7 @@ endif
 nmap <leader>l :setlocal number!<CR>
 nmap j gj
 nmap k gk
-cmap w!! w !sudo tee % 
+cmap w!! w !sudo tee %
 map <space> <leader>
 map <space><space> <leader><leader>
 imap <c-d> <del>
@@ -224,10 +225,10 @@ command! CDC cd %:p:h
 set completeopt=longest,menu,preview
 
 set foldlevel=20
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 foldmethod=indent 
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 foldmethod=indent
 autocmd FileType python nnoremap <buffer> <F9> <ESC>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
 
-autocmd FileType jade setlocal expandtab shiftwidth=2 softtabstop=2 foldmethod=indent 
+autocmd FileType jade setlocal expandtab shiftwidth=2 softtabstop=2 foldmethod=indent
 
 autocmd FileType html*,xml setlocal expandtab shiftwidth=2 softtabstop=-1
 
