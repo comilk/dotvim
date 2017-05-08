@@ -185,6 +185,7 @@ set showmatch       " 显示匹配的括号
 set nobackup        " 关闭备份
 set noswapfile
 set wildmenu
+set wildmode=list:longest,full
 set mouse=a
 if has("nvim")
   set inccommand=split
