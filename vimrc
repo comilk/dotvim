@@ -16,17 +16,21 @@ Plug 'morhetz/gruvbox'
 Plug 'w0rp/ale'
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'go': ['gometalinter', 'gofmt']
 \}
+let g:ale_go_gometalinter_options='--fast'
 
-Plug 'surround.vim'
+Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 
 "nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let g:NERDTreeHijackNetrw=0
-nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 
 "tagbar
@@ -49,9 +53,12 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_new_file = 't'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-let g:ctrlp_buftag_types = {'javascript': '--language-force=js'}
+let g:ctrlp_buftag_types = {
+    \'javascript': '--language-force=js',
+    \'go': '--language-force=go --golang-types=ft',
+\}
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:30'
-noremap <leader>r :CtrlPBufTag<CR>
+nmap <leader>r :CtrlPBufTag<CR>
 if executable('ag')
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -102,6 +109,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
 
+Plug 'dhruvasagar/vim-table-mode'
+
 "Language support
 "Plug 'php.vim'
 "Plug 'vim-scripts/SQLComplete.vim'
@@ -121,6 +130,14 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+"let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
+
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+"autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  :GoDecls<cr>
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 "lisp
 Plug 'kien/rainbow_parentheses.vim'
@@ -145,6 +162,9 @@ au Syntax clojure,racket,lisp RainbowParenthesesLoadRound
 au Syntax clojure,racket,lisp RainbowParenthesesLoadSquare
 au Syntax clojure,racket,lisp RainbowParenthesesLoadBraces
 au Syntax clojure,racket,lisp let b:loaded_delimitMate = 1
+
+Plug 'qpkorr/vim-bufkill'
+cmap bd BD
 
 call plug#end()
 
@@ -257,7 +277,6 @@ if $TERM_PROGRAM =~ "iTerm"
 endif
 
 if has("nvim")
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
