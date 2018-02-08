@@ -67,12 +67,12 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-"let g:ycm_key_invoke_completion = '<c-/>'
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_semantic_triggers = { 'clojure': [ 're!\(\w\w\w' ], 'racket': [ 're!\(\w\w\w' ] }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+  Plug 'zchee/deoplete-jedi'
+  Plug 'zchee/deoplete-go'
+endif
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
