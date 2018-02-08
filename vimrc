@@ -1,7 +1,7 @@
 "ORDER MATTERS
 
 "Plug
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 "COLOR  SCHEME
 Plug 'joshdick/onedark.vim'
@@ -10,7 +10,6 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 Plug 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
-Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'morhetz/gruvbox'
 
 Plug 'w0rp/ale'
@@ -52,10 +51,9 @@ let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_open_new_file = 't'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|vendor)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_buftag_types = {
     \'javascript': '--language-force=js',
-    \'go': '--language-force=go --golang-types=ft',
 \}
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:30'
 nmap <leader>r :CtrlPBufTag<CR>
@@ -93,7 +91,8 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme='badwolf'
+let g:airline_theme='onedark'
+let g:airline#extensions#ale#enabled = 1
 
 "Auto indent detect
 Plug 'tpope/vim-sleuth'
@@ -105,17 +104,15 @@ Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
 Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
 
 Plug 'dhruvasagar/vim-table-mode'
 
-"Language support
-"Plug 'php.vim'
-"Plug 'vim-scripts/SQLComplete.vim'
+Plug 'editorconfig/editorconfig-vim'
 
-"Plug 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade'
 
 "javascript
 Plug 'pangloss/vim-javascript'
@@ -130,11 +127,11 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-"let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 
-let g:go_auto_sameids = 1
+"let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
+let g:go_updatetime = 2500
 "autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  :GoDecls<cr>
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
@@ -144,24 +141,24 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
 Plug 'guns/vim-sexp' , {'for': ['clojure', 'scheme', 'lisp'] } | Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'scheme', 'lisp']}
 if has('nvim')
-  Plug 'neovim/node-host' | Plug 'markx/nvim-parinfer.js'
+  Plug 'clojure-vim/nvim-parinfer.js'
   let g:sexp_enable_insert_mode_mappings = 0
-endif
-
-Plug 'wlangstroth/vim-racket'
-Plug 'jpalardy/vim-slime'
-if ('nvim')
-  let g:slime_target = "tmux"
 else
-  let g:slime_target = "tmux"
+  Plug 'bhurlow/vim-parinfer'
 endif
-Plug 'MicahElliott/vrod', {'dir': '~/.vim/bundle/vim-racket-omni-docs'}
 
-au Syntax clojure,racket,lisp RainbowParenthesesActivate
-au Syntax clojure,racket,lisp RainbowParenthesesLoadRound
-au Syntax clojure,racket,lisp RainbowParenthesesLoadSquare
-au Syntax clojure,racket,lisp RainbowParenthesesLoadBraces
-au Syntax clojure,racket,lisp let b:loaded_delimitMate = 1
+let g:plug_shallow = 0
+Plug 'https://git.foldling.org/vim-scheme.git'
+let g:is_chicken = 1
+
+Plug 'jpalardy/vim-slime'
+let g:slime_target = "tmux"
+
+au Syntax clojure,racket,lisp,scheme RainbowParenthesesActivate
+au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadRound
+au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadSquare
+au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadBraces
+au Syntax clojure,racket,lisp,scheme let b:loaded_delimitMate = 1
 
 Plug 'qpkorr/vim-bufkill'
 cmap bd BD
@@ -177,7 +174,7 @@ set synmaxcol=3000
 set nocompatible    " 关闭兼容模式
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+colorscheme onedark
 set encoding=utf8
 set fileencodings=utf8,gb2312,gb18030,ansi
 set number		" 显示行号
@@ -207,6 +204,7 @@ set noswapfile
 set wildmenu
 set wildmode=list:longest,full
 set mouse=a
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 if has("nvim")
   set inccommand=split
 endif
@@ -220,7 +218,9 @@ map <space> <leader>
 map <space><space> <leader><leader>
 imap <c-d> <del>
 
-" smash escape
+vnoremap > >gv
+vnoremap < <gv
+
 inoremap jk <esc>
 inoremap kj <esc>
 
@@ -234,6 +234,10 @@ nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 nnoremap <C-h> <c-w>h
+
+nnoremap <leader>p "+p
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
 
 if has("nvim")
   tnoremap <Esc> <C-\><C-n>
