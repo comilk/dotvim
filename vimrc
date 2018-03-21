@@ -158,7 +158,9 @@ au Syntax clojure,racket,lisp,scheme RainbowParenthesesActivate
 au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadRound
 au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadSquare
 au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadBraces
-au Syntax clojure,racket,lisp,scheme let b:loaded_delimitMate = 1
+
+"vim-sexp will provider auto closing, so disable delimitMate
+au FileType clojure,racket,lisp,scheme let b:loaded_delimitMate = 1 
 
 Plug 'qpkorr/vim-bufkill'
 cmap bd BD
@@ -185,8 +187,8 @@ set guifont=Sauce_Code_Powerline:h12
 "FUNCTION
 autocmd! bufwritepost .vimrc source ~/.vimrc
 set expandtab
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set autoindent
 set showcmd         " 显示命令
 set lz              " 当运行宏时，在命令执行完成之前，不重绘屏幕
