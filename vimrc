@@ -1,16 +1,11 @@
-"ORDER MATTERS
 
-"Plug
 call plug#begin('~/.config/nvim/bundle')
 
-"COLOR  SCHEME
+Plug 'tpope/vim-sensible'
+
 Plug 'joshdick/onedark.vim'
-Plug 'tomasr/molokai'
-let g:molokai_original = 1
-let g:rehash256 = 1
-Plug 'altercation/vim-colors-solarized'
-let g:solarized_termcolors=256
 Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 
 Plug 'w0rp/ale'
 nmap <silent> [e <Plug>(ale_previous_wrap)
@@ -28,42 +23,13 @@ Plug 'scrooloose/nerdcommenter'
 
 "nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-let g:NERDTreeHijackNetrw=0
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 
-"tagbar
-Plug 'majutsushi/tagbar'
-let g:tagbar_left = 0
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_javascript = {
-    \ 'ctagstype' : 'js'
-\ }
+Plug '~/homebrew/opt/fzf'
+Plug 'junegunn/fzf.vim'
+nnoremap <c-p> :Files<cr>
 
-"ack & ag
-Plug 'rking/ag.vim'
-
-"Ctrl-P
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_switch_buffer = 'et'
-let g:ctrlp_open_new_file = 't'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|vendor)|(\.(swp|ico|git|svn))$'
-let g:ctrlp_buftag_types = {
-    \'javascript': '--language-force=js',
-\}
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:30'
-nmap <leader>r :CtrlPBufTag<CR>
-if executable('ag')
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-    "ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-endif
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -88,7 +54,6 @@ Plug 'Lokaltog/vim-easymotion'
 set laststatus=2
 set noshowmode
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='onedark'
@@ -103,7 +68,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
-Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
@@ -116,7 +80,6 @@ Plug 'digitaltoad/vim-jade'
 
 "javascript
 Plug 'pangloss/vim-javascript'
-Plug 'marijnh/tern_for_vim'
 Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
 
@@ -136,20 +99,12 @@ let g:go_updatetime = 2500
 autocmd FileType go nmap <leader>r  :GoDecls<cr>
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
-"lisp
+
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
 Plug 'guns/vim-sexp' , {'for': ['clojure', 'scheme', 'lisp'] } | Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'scheme', 'lisp']}
-if has('nvim')
-  Plug 'clojure-vim/nvim-parinfer.js'
-  let g:sexp_enable_insert_mode_mappings = 0
-else
-  Plug 'bhurlow/vim-parinfer'
-endif
 
-let g:plug_shallow = 0
-Plug 'https://git.foldling.org/vim-scheme.git'
-let g:is_chicken = 1
+Plug 'eraserhd/parinfer-rust', {'for': ['clojure', 'scheme', 'list']}
 
 Plug 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
@@ -175,13 +130,11 @@ set synmaxcol=3000
 "APPEARENCE
 set nocompatible    " 关闭兼容模式
 set t_Co=256
-set background=dark
 colorscheme onedark
-set encoding=utf8
 set fileencodings=utf8,gb2312,gb18030,ansi
 set number		" 显示行号
 set cursorline
-set guifont=Sauce_Code_Powerline:h12
+set guifont=Souce_Code_Pro:h12
 
 
 "FUNCTION
@@ -190,8 +143,6 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 set autoindent
-set showcmd         " 显示命令
-set lz              " 当运行宏时，在命令执行完成之前，不重绘屏幕
 set hid             " 可以在没有保存的情况下切换buffer
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l "退格键和方向键可以换行
@@ -251,17 +202,11 @@ command! CDC cd %:p:h
 "LANGUAGE
 set completeopt=longest,menu,preview
 
-set foldlevel=20
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 foldmethod=indent
 autocmd FileType python nnoremap <buffer> <F9> <ESC>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
-
-autocmd FileType jade setlocal expandtab shiftwidth=2 softtabstop=2 foldmethod=indent
-
-autocmd FileType html*,xml setlocal expandtab shiftwidth=2 softtabstop=-1
 
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-autocmd filetype clojure, racket set lisp
+autocmd filetype clojure,racket set lisp
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
