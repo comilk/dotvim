@@ -29,14 +29,33 @@ nmap <leader>f :NERDTreeFind<CR>
 Plug '~/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :Files<cr>
+nnoremap <c-b> :Buffers<cr>
+nnoremap q: :History:<cr>
 
+Plug 'autozimu/LanguageClient-neovim', {  'branch': 'next',  'do': 'bash install.sh'  }
+let g:LanguageClient_serverCommands = {
+    \ }
+
+augroup lsp_mapping
+  autocmd filetype js nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+  autocmd filetype js nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  autocmd filetype js nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd filetype js nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+augroup END
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#enable_at_startup = 1
-  Plug 'zchee/deoplete-jedi'
-  Plug 'zchee/deoplete-go'
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-go'
+Plug 'clojure-vim/async-clj-omni'
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -91,6 +110,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+let g:go_def_mode="gopls"
 
 "let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
@@ -115,10 +135,12 @@ au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadSquare
 au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadBraces
 
 "vim-sexp will provider auto closing, so disable delimitMate
-au FileType clojure,racket,lisp,scheme let b:loaded_delimitMate = 1 
+au FileType clojure,racket,lisp,scheme let b:loaded_delimitMate = 1
 
 Plug 'qpkorr/vim-bufkill'
 cmap bd BD
+
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
@@ -209,11 +231,11 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 autocmd filetype clojure,racket set lisp
 
 " Removes trailing spaces
-function! TrimWhiteSpace()
-    %s/\s\+$//e
-endfunction
-nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
-autocmd FileType javascript autocmd BufWritePre * :call TrimWhiteSpace()
+command! TrimWhiteSpace %s/\s\+$//e
+augroup trim_white_space
+  autocmd!
+  autocmd BufWritePre *.js :TrimWhiteSpace
+augroup END
 
 function! SetIndent(i)
     let &shiftwidth = a:i
