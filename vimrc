@@ -65,6 +65,8 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 Plug 'raimondi/delimitmate'
 let delimitMate_expand_cr = 1
+"vim-sexp will provider auto closing, so disable delimitMate
+au FileType clojure,racket,lisp,scheme let b:loaded_delimitMate = 1
 
 "esaymotion
 Plug 'Lokaltog/vim-easymotion'
@@ -120,22 +122,23 @@ autocmd FileType go nmap <leader>r  :GoDecls<cr>
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme,racket RainbowParentheses
+  autocmd FileType lisp,clojure,scheme,racket NoMatchParen 
+augroup END
+
 Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
 Plug 'guns/vim-sexp' , {'for': ['clojure', 'scheme', 'lisp'] } | Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'scheme', 'lisp']}
+" let parinfer insert the parentheses
+let g:sexp_enable_insert_mode_mappings = 0
 
-Plug 'eraserhd/parinfer-rust', {'for': ['clojure', 'scheme', 'list']}
+Plug 'eraserhd/parinfer-rust', {'for': ['clojure', 'scheme', 'lisp', 'racket']}
 
 Plug 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
 
-au Syntax clojure,racket,lisp,scheme RainbowParenthesesActivate
-au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadRound
-au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadSquare
-au Syntax clojure,racket,lisp,scheme RainbowParenthesesLoadBraces
-
-"vim-sexp will provider auto closing, so disable delimitMate
-au FileType clojure,racket,lisp,scheme let b:loaded_delimitMate = 1
 
 Plug 'qpkorr/vim-bufkill'
 cmap bd BD
