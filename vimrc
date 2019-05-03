@@ -4,6 +4,13 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'tpope/vim-sensible'
 
 Plug 'joshdick/onedark.vim'
+if (has("autocmd"))
+  augroup colorextend
+    autocmd!
+    autocmd ColorScheme * call onedark#extend_highlight("MatchParen", {"bg": {"cterm": "darkgrey", "gui": "#5c6370"}})
+  augroup END
+endif
+
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
 
@@ -126,10 +133,10 @@ Plug 'junegunn/rainbow_parentheses.vim'
 augroup rainbow_lisp
   autocmd!
   autocmd FileType lisp,clojure,scheme,racket RainbowParentheses
-  autocmd FileType lisp,clojure,scheme,racket NoMatchParen 
 augroup END
 
 Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
+autocmd FileType clojure nmap gd <Plug>FireplaceDjump
 Plug 'guns/vim-sexp' , {'for': ['clojure', 'scheme', 'lisp'] } | Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'scheme', 'lisp']}
 " let parinfer insert the parentheses
 let g:sexp_enable_insert_mode_mappings = 0
@@ -254,5 +261,9 @@ endif
 
 if has("nvim")
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if (has("termguicolors"))
+  set termguicolors
 endif
 
