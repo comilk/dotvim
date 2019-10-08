@@ -155,16 +155,15 @@ Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
 
-filetype plugin indent on  " 文件类型插件
-syntax on       " 语法高亮
-set synmaxcol=3000
+filetype plugin indent on
+syntax on
 
 "APPEARENCE
-set nocompatible    " 关闭兼容模式
+set nocompatible    "
 set t_Co=256
 colorscheme onedark
 set fileencodings=utf8,gb2312,gb18030,ansi
-set number		" 显示行号
+set number
 set cursorline
 set guifont=Souce_Code_Pro:h12
 
@@ -175,16 +174,16 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 set autoindent
-set hid             " 可以在没有保存的情况下切换buffer
 set backspace=eol,start,indent
-set whichwrap+=<,>,h,l "退格键和方向键可以换行
-set incsearch       " 增量式搜索
-set hlsearch        " 高亮搜索
-set ignorecase      " 搜索时忽略大小写
-set smartcase	    "搜索时如果全部小写，则忽略大小写
-"set magic           " h magic吧
-set showmatch       " 显示匹配的括号
-set nobackup        " 关闭备份
+set incsearch
+set hidden
+"set whichwrap+=<,>,h,l
+set hlsearch
+set ignorecase
+set smartcase
+"set magic
+set showmatch
+set nobackup
 set noswapfile
 set wildmenu
 set wildmode=list:longest,full
