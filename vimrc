@@ -224,7 +224,9 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
 if has("nvim")
-  tnoremap <Esc> <C-\><C-n>
+  "tnoremap <Esc> <C-\><C-n>
+  au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au FileType fzf tunmap <buffer> <Esc>
 endif
 
 " CDC = Change to Directory of Current file
