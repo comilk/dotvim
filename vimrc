@@ -2,6 +2,7 @@
 call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-obsession'
 
 Plug 'joshdick/onedark.vim'
 if (has("autocmd"))
@@ -75,7 +76,6 @@ let delimitMate_expand_cr = 1
 "vim-sexp will provider auto closing, so disable delimitMate
 au FileType clojure,racket,lisp,scheme let b:loaded_delimitMate = 1
 
-"esaymotion
 Plug 'Lokaltog/vim-easymotion'
 
 "airline
@@ -85,7 +85,6 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='onedark'
-let g:airline#extensions#ale#enabled = 1
 
 "Auto indent detect
 Plug 'tpope/vim-sleuth'
@@ -125,7 +124,7 @@ let g:go_def_mode="gopls"
 let g:go_auto_type_info = 1
 let g:go_updatetime = 2500
 "autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  :GoDecls<cr>
+autocmd FileType go nmap <leader>r :GoDecls<cr>
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 
@@ -151,6 +150,7 @@ Plug 'qpkorr/vim-bufkill'
 cmap bd BD
 
 Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-slash'
 
 call plug#end()
 
@@ -159,7 +159,7 @@ filetype plugin indent on
 syntax on
 
 "APPEARENCE
-set nocompatible    "
+set nocompatible
 set t_Co=256
 colorscheme onedark
 set fileencodings=utf8,gb2312,gb18030,ansi
@@ -181,7 +181,6 @@ set hidden
 set hlsearch
 set ignorecase
 set smartcase
-"set magic
 set showmatch
 set nobackup
 set noswapfile
@@ -189,12 +188,13 @@ set wildmenu
 set wildmode=list:longest,full
 set mouse=a
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set foldmethod=indent
+set foldlevelstart=20
 if has("nvim")
   set inccommand=split
 endif
 
 "SHORTCUT
-nmap <leader>l :setlocal number!<CR>
 nmap j gj
 nmap k gk
 cmap w!! w !sudo tee %
@@ -233,7 +233,7 @@ endif
 command! CDC cd %:p:h
 
 "LANGUAGE
-set completeopt=longest,menu,preview
+set completeopt=longest,menuone,preview
 
 autocmd FileType python nnoremap <buffer> <F9> <ESC>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
 
@@ -241,11 +241,15 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 
 autocmd filetype clojure,racket set lisp
 
+" use / as word delimiter
+autocmd filetype clojure set iskeyword-=/
+
 " Removes trailing spaces
 command! TrimWhiteSpace %s/\s\+$//e
+command! TrimWhiteSpaceOnSave autocmd BufWritePre * :TrimWhiteSpace
 augroup trim_white_space
   autocmd!
-  autocmd BufWritePre *.js :TrimWhiteSpace
+  autocmd BufWritePre *.js,*.clj,*.cljs,*.cljc :TrimWhiteSpace
 augroup END
 
 function! SetIndent(i)
