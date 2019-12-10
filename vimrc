@@ -135,7 +135,8 @@ augroup rainbow_lisp
 augroup END
 
 Plug 'tpope/vim-fireplace' , { 'for': 'clojure' }
-autocmd FileType clojure nmap gd <Plug>FireplaceDjump
+autocmd FileType clojure nmap <buffer> gd <Plug>FireplaceDjump
+autocmd FileType clojure nmap <buffer> <CR> cpp
 Plug 'guns/vim-sexp' , {'for': ['clojure', 'scheme', 'lisp'] } | Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'scheme', 'lisp']}
 " let parinfer insert the parentheses
 let g:sexp_enable_insert_mode_mappings = 0
@@ -145,12 +146,15 @@ Plug 'eraserhd/parinfer-rust', {'for': ['clojure', 'scheme', 'lisp', 'racket']}
 Plug 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
 
+Plug 'Olical/vim-scheme', {'on': 'SchemeConnect'}
+let g:scheme_executable = "racket -i -l xrepl -I sicp"
 
 Plug 'qpkorr/vim-bufkill'
 cmap bd BD
 
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
+Plug 'wlangstroth/vim-racket'
 
 call plug#end()
 
@@ -238,8 +242,6 @@ set completeopt=longest,menuone,preview
 autocmd FileType python nnoremap <buffer> <F9> <ESC>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
 
 autocmd filetype crontab setlocal nobackup nowritebackup
-
-autocmd filetype clojure,racket set lisp
 
 " use / as word delimiter
 autocmd filetype clojure set iskeyword-=/
